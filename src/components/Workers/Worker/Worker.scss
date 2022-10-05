@@ -1,0 +1,12 @@
+.worker__table-row {
+  & .companies__checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+  }
+}
+.row-active {
+  background-color: #bdbdbd;
+}

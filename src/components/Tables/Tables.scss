@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  & .companies__table {
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+    & .table__row-header {
+      font-weight: bold;
+    }
+
+    & .companies__table-row {
+      display: flex;
+      text-align: center;
+      height: 30px;
+    }
+
+    & .row-active {
+      background-color: #bdbdbd;
+    }
+  }
+}

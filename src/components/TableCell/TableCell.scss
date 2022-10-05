@@ -1,0 +1,12 @@
+.table-cell {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 1px solid #999;
+  width: 200px;
+  & input {
+    padding: 5px;
+    height: 28px;
+    background-color: inherit;
+  }
+}

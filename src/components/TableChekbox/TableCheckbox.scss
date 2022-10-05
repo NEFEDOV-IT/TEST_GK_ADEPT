@@ -1,0 +1,21 @@
+.companies__table {
+  & .companies__table-row {
+    & .checkbox {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 80px;
+    }
+  }
+}
+
+.worker__table-row {
+  & .checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+  }
+}

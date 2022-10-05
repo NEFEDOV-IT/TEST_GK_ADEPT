@@ -1,0 +1,25 @@
+.worker__table-row {
+  display: flex;
+  text-align: center;
+  height: 30px;
+
+  & .worker__table-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid #999;
+    width: 200px;
+  }
+
+  & .worker__checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+  }
+}
+
+.worker__row-header {
+  font-weight: bold;
+}
