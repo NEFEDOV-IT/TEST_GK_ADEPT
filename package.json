@@ -2,6 +2,7 @@
   "name": "gk_adept",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nefedov-it.ru/_sites/gk_adept/",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
     "@types/jest": "^27.5.2",
