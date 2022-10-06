@@ -2,11 +2,12 @@ import React, { FC, useState, ChangeEvent } from 'react';
 import './TableCell.scss'
 import { useAppDispatch } from "../../hooks/hooks";
 import {
-  changeAddress,
+  changeCompanyAddress,
   changeCompanyName, changeWorkerName,
   changeWorkerPosition,
   changeWorkerSurname
 } from "../../store/companies.slice/companies.slice";
+import { IWorker } from "../../types/types";
 
 interface ICompanyProps {
   company: string,
@@ -14,18 +15,18 @@ interface ICompanyProps {
   position: string,
   name: string,
   surname: string,
-  address: string
+  address: string,
+  workers: IWorker[],
 }
 
 interface ITableCell {
-  item: string,
+  item: string | number,
   company: ICompanyProps,
   type: string,
-  readOnly?: any,
 }
 
-const TableCell: FC<ITableCell> = ({ item, company, type, readOnly }) => {
-  const [state, setState] = useState<string>(item);
+const TableCell: FC<ITableCell> = ({ item, company, type }) => {
+  const [state, setState] = useState<string | number>(item);
   const dispatch = useAppDispatch()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -60,7 +61,7 @@ const TableCell: FC<ITableCell> = ({ item, company, type, readOnly }) => {
     }
 
     if (item === company.address) {
-      dispatch(changeAddress({
+      dispatch(changeCompanyAddress({
         id: company.id,
         address: e.target.value,
       }))
@@ -73,7 +74,6 @@ const TableCell: FC<ITableCell> = ({ item, company, type, readOnly }) => {
         value={state}
         onChange={handleChange}
         type={type}
-        readOnly={readOnly}
       />
     </div>
   );

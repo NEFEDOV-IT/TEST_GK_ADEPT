@@ -3,15 +3,21 @@ export interface IWorker {
   surname: string;
   name: string;
   position: string;
-  checkBox: boolean;
+  checked: boolean;
 }
 
 export interface ICompany {
   id: number;
   company: string;
   address: string;
-  checkBox: boolean;
+  checked: boolean;
   workers: IWorker[];
+}
+
+export interface RootState {
+  statusCompanies: Boolean;
+  statusWorkers: Boolean;
+  companies: ICompany[];
 }
 
 

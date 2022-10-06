@@ -10,8 +10,8 @@ const Tables: FC = () => {
 
   return (
     <div className='wrapper'>
-      <Companies companies={companies}/>
-      <Workers companies={companies}/>
+      <Companies companies={companies} />
+      <Workers companies={companies} />
     </div>
   );
 };

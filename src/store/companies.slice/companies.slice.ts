@@ -1,35 +1,35 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { companies } from "../dataCompanies";
-import { ICompany } from "../../types/types";
+import { ICompany, IWorker, RootState } from "../../types/types";
+import { state } from "./dataCompanies";
 
-const initialState: ICompany[] = companies;
+const initialState: RootState = state;
 
 const companiesSlice = createSlice({
   name: 'companies',
   initialState,
   reducers: {
     changeWorkerChecked(state, action) {
-      state.map(
+      state.companies.map(
         company =>
           company.workers.map(
             worker =>
               worker.id === action.payload ?
-                worker.checkBox = !worker.checkBox : worker.checkBox
+                worker.checked = !worker.checked : worker.checked
           )
       )
     },
     changeCompanyChecked(state, action) {
-      state.map(
+      state.companies.map(
         company => company.id === action.payload ?
-          company.checkBox = !company.checkBox : company.checkBox
+          company.checked = !company.checked : company.checked
       )
     },
     changeCompanyName(state, action) {
-      const index = state.findIndex(company => company.id === action.payload.id)
-      state[index].company = action.payload.company
+      const index = state.companies.findIndex(company => company.id === action.payload.id)
+      state.companies[index].company = action.payload.company
     },
     changeWorkerSurname(state, action) {
-      state.map(
+      state.companies.map(
         company =>
           company.workers.map(
             worker =>
@@ -39,7 +39,7 @@ const companiesSlice = createSlice({
       )
     },
     changeWorkerPosition(state, action) {
-      state.map(
+      state.companies.map(
         company =>
           company.workers.map(
             worker =>
@@ -49,7 +49,7 @@ const companiesSlice = createSlice({
       )
     },
     changeWorkerName(state, action) {
-      state.map(
+      state.companies.map(
         company =>
           company.workers.map(
             worker =>
@@ -58,9 +58,40 @@ const companiesSlice = createSlice({
           )
       )
     },
-    changeAddress(state, action) {
-      const index = state.findIndex(company => company.id === action.payload.id)
-      state[index].address = action.payload.address
+    changeCompanyAddress(state, action) {
+      const index = state.companies.findIndex(company => company.id === action.payload.id)
+      state.companies[index].address = action.payload.address
+    },
+    changeCompaniesStatus(state, action) {
+      state.companies.map(
+        company => company.checked = action.payload
+      )
+      state.statusCompanies = action.payload
+    },
+    changeWorkerStatus(state, action) {
+      state.companies.map(
+        company =>
+          company.workers.map(
+            worker => worker.checked = action.payload
+          )
+      )
+      state.statusWorkers = action.payload
+    },
+    removeCompanies(state, action) {
+      const index = action.payload.map((company: ICompany) => company.id)
+      state.companies = state.companies.filter(company => !index.includes(company.id))
+    },
+    removeWorkers(state, action) {
+      const index = state.companies.findIndex((company: ICompany) => company.id === action.payload.id)
+      const workersId = action.payload.workers.map((worker: IWorker) => worker.id)
+      state.companies[index].workers = state.companies[index].workers.filter(worker => !workersId.includes(worker.id))
+    },
+    addCompany(state, action) {
+      state.companies.unshift(action.payload)
+    },
+    addWorker(state, action) {
+      const index = state.companies.findIndex((company: ICompany) => company.id === action.payload.id)
+      state.companies[index].workers.unshift(action.payload.worker)
     },
   }
 })
@@ -73,5 +104,11 @@ export const {
   changeWorkerChecked,
   changeWorkerSurname,
   changeCompanyName,
-  changeAddress
+  changeCompanyAddress,
+  changeCompaniesStatus,
+  changeWorkerStatus,
+  removeCompanies,
+  removeWorkers,
+  addCompany,
+  addWorker
 } = companiesSlice.actions

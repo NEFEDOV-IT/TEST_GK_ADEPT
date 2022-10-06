@@ -1,0 +1,10 @@
+.table-selectAll {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  margin-right: 10px;
+  & label {
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
