@@ -1,4 +1,6 @@
-export const state = {
+import { IInitialState } from "../types/types";
+
+export const state: IInitialState = {
   statusCompanies: false,
   statusWorkers: false,
   companies: [

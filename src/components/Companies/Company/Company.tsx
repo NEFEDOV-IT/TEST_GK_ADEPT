@@ -2,8 +2,13 @@ import React, { FC } from 'react';
 import TableCheckbox from "../../TableChekbox/TableCheckbox";
 import TableCell from "../../TableCell/TableCell";
 import './Company.scss'
+import { ICompany } from "../../../types/types";
 
-const Company: FC<any> = ({ company }) => {
+interface IProps<T> {
+  company: T;
+}
+
+const Company: FC<IProps<ICompany>> = ({ company }) => {
   return (
     <div className={company.checked ? 'companies__table-row row-active' : 'companies__table-row'}>
       <TableCheckbox

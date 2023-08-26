@@ -2,8 +2,13 @@ import React, { FC } from 'react';
 import TableCheckbox from "../../TableChekbox/TableCheckbox";
 import TableCell from "../../TableCell/TableCell";
 import './Worker.scss'
+import { IWorker } from "../../../types/types";
 
-const Worker: FC<any> = ({ worker }) => {
+interface IProps<T> {
+  worker: T;
+}
+
+const Worker: FC<IProps<IWorker>> = ({ worker }) => {
   return (
     <div className={worker.checked ? 'worker__table-row row-active' : 'worker__table-row'}
          key={worker.id}>

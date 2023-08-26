@@ -8,7 +8,7 @@ import { removeCompanies } from "../../../store/companies.slice/companies.slice"
 const ButtonDelete: FC = () => {
   const companies = useAppSelector(getCompanies)
   const dispatch = useAppDispatch()
-  const isActiveChecked = companies.filter((item: ICompany) => item.checked)
+  const isActiveChecked: ICompany[] = companies.filter((item: ICompany) => item.checked)
 
   const handleClick = () => {
     if (isActiveChecked.length > 0) {

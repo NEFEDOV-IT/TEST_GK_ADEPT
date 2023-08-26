@@ -2,26 +2,19 @@ import React, { FC, useState } from 'react';
 import './TableCheckbox.scss'
 import { useAppDispatch } from "../../hooks/hooks";
 import { changeCompanyChecked, changeWorkerChecked } from "../../store/companies.slice/companies.slice";
-import { IWorker } from "../../types/types";
 
-interface IPropsCheckbox {
-  item: any;
-  company: {
-    id: number;
-    company: string;
-    address: string;
-    checked: boolean;
-    workers: IWorker[];
-    surname: string;
-  }
+interface IPropsCheckbox<T> {
+  item: boolean | undefined;
+  company: T;
 }
 
-const TableCheckbox: FC<IPropsCheckbox> = ({ item, company }) => {
+const TableCheckbox: FC<IPropsCheckbox<any>> = ({ item, company }) => {
   const dispatch = useAppDispatch()
-  const [checked, setChecked] = useState(item);
+  const [checked, setChecked] = useState<boolean | undefined>(item);
 
-  const handleChecked = () => {
+  const handleChecked = (): void => {
     setChecked(!checked)
+
     if (company.surname) {
       dispatch(changeWorkerChecked(company.id))
     } else {

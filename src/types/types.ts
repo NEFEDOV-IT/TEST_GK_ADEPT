@@ -3,18 +3,18 @@ export interface IWorker {
   surname: string;
   name: string;
   position: string;
-  checked: boolean;
+  checked: boolean | undefined;
 }
 
 export interface ICompany {
   id: number;
   company: string;
   address: string;
-  checked: boolean;
+  checked: boolean | undefined;
   workers: IWorker[];
 }
 
-export interface RootState {
+export interface IInitialState {
   statusCompanies: Boolean;
   statusWorkers: Boolean;
   companies: ICompany[];

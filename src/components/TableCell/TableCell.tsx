@@ -7,64 +7,53 @@ import {
   changeWorkerPosition,
   changeWorkerSurname
 } from "../../store/companies.slice/companies.slice";
-import { IWorker } from "../../types/types";
 
-interface ICompanyProps {
-  company: string,
-  id: number,
-  position: string,
-  name: string,
-  surname: string,
-  address: string,
-  workers: IWorker[],
-}
-
-interface ITableCell {
+interface ITableCell<T> {
   item: string | number,
-  company: ICompanyProps,
+  company: T,
   type: string,
 }
 
-const TableCell: FC<ITableCell> = ({ item, company, type }) => {
+const TableCell: FC<ITableCell<any>> = ({ item, company, type }) => {
   const [state, setState] = useState<string | number>(item);
   const dispatch = useAppDispatch()
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setState(e.target.value)
 
-    if (item === company.company) {
-      dispatch(changeCompanyName({
-        id: company.id,
-        company: e.target.value,
-      }))
-    }
-
-    if (item === company.position) {
-      dispatch(changeWorkerPosition({
-        id: company.id,
-        position: e.target.value,
-      }))
-    }
-
-    if (item === company.name) {
-      dispatch(changeWorkerName({
-        id: company.id,
-        name: e.target.value,
-      }))
-    }
-
-    if (item === company.surname) {
-      dispatch(changeWorkerSurname({
-        id: company.id,
-        surname: e.target.value,
-      }))
-    }
-
-    if (item === company.address) {
-      dispatch(changeCompanyAddress({
-        id: company.id,
-        address: e.target.value,
-      }))
+    switch (item) {
+      case company.company:
+        dispatch(changeCompanyName({
+          id: company.id,
+          company: e.target.value,
+        }))
+        break;
+      case company.position:
+        dispatch(changeWorkerPosition({
+          id: company.id,
+          position: e.target.value,
+        }))
+        break;
+      case company.name:
+        dispatch(changeWorkerName({
+          id: company.id,
+          name: e.target.value,
+        }))
+        break;
+      case company.surname:
+        dispatch(changeWorkerSurname({
+          id: company.id,
+          surname: e.target.value,
+        }))
+        break;
+      case company.address:
+        dispatch(changeCompanyAddress({
+          id: company.id,
+          address: e.target.value,
+        }))
+        break;
+      default:
+        break;
     }
   }
 
